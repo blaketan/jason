@@ -198,14 +198,6 @@ defimpl Jason.Encoder, for: [Date, Time, NaiveDateTime, DateTime] do
   end
 end
 
-defimpl Jason.Encoder, for: Decimal do
-  def encode(value, _opts) do
-    # silence the xref warning
-    decimal = Decimal
-    [?\", decimal.to_string(value), ?\"]
-  end
-end
-
 defimpl Jason.Encoder, for: Jason.Fragment do
   def encode(%{encode: encode}, opts) do
     encode.(opts)
